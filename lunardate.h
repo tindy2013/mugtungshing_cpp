@@ -256,6 +256,8 @@ inline LunarDate getLunarDate(int solarYear, int solarMonth, int solarDay)
         return date;
     time_t thisTime = getTime(solarYear, solarMonth, solarDay);
     time_t beginTime = getTime(1970, 2, 6);
+    if(thisTime < beginTime)
+        return date;
     int daySpan = (thisTime - beginTime) / (24 * 60 * 60) + 1;
 
     int lunarYear;
