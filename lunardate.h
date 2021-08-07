@@ -13,7 +13,10 @@ struct LunarDate
 
     std::string dump() const
     {
-        return "农历" + year + "年" + month + "月" + day;
+        if(year.empty() || month.empty() || day.empty())
+            return "未知农历日期";
+        else
+            return "农历" + year + "年" + month + "月" + day;
     }
 };
 
@@ -143,6 +146,7 @@ static const int lunarYearArr[] = {
     0x0f252, // 2090-2099
     0x0d520 // 2100
 };
+static int lunarYearLimit = 2100;
 static const char* lunarMonth[] = {
     "正",
     "二",
@@ -248,6 +252,8 @@ inline time_t getTime(int year, int month, int day)
 inline LunarDate getLunarDate(int solarYear, int solarMonth, int solarDay)
 {
     LunarDate date;
+    if(solarYear > lunarYearLimit)
+        return date;
     time_t thisTime = getTime(solarYear, solarMonth, solarDay);
     time_t beginTime = getTime(1970, 2, 6);
     int daySpan = (thisTime - beginTime) / (24 * 60 * 60) + 1;
