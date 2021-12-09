@@ -6,3 +6,4 @@ services:
     environment:
       - BOT_TOKEN
       - URL_BASE
+      - "PORT=8080"
