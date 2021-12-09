@@ -154,7 +154,7 @@ struct Recommendation
     }
 };
 
-std::string getTungShing(uint32_t userid, const std::string &nickname, const Date &date = Date(), bool today = true)
+std::string getTungShing(int64_t userid, const std::string &nickname, const Date &date = Date(), bool today = true)
 {
     std::string seed = std::to_string(userid) + std::to_string(date.year) + std::to_string(date.month) + std::to_string(date.day);
     std::mt19937 generator(std::stoull(seed));
