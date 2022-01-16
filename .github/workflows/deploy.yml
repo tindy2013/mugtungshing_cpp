@@ -1,0 +1,28 @@
+on: [push]
+
+jobs:
+
+  devflow:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: okteto/context@latest
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+    
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        name: ${{ secrets.OKTETO_NAMESPACE }}
+    
+    - name: "Deploy application"
+      uses: okteto/apply@latest
+      with:
+        namespace: ${{ secrets.OKTETO_NAMESPACE }}
+        manifest: docker-compose.yml
+
+    - name: "Push changes"
+      uses: okteto/push@latest
+      with:
+        namespace: ${{ secrets.OKTETO_NAMESPACE }}
+        name: ${{ secrets.OKTETO_APP_NAME }}
