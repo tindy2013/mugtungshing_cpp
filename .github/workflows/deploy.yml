@@ -1,8 +1,10 @@
 on: [push]
 
+name: Update Okteto Container
+
 jobs:
 
-  devflow:
+  Build:
     runs-on: ubuntu-latest
     steps:
     
