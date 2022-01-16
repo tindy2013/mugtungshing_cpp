@@ -15,7 +15,7 @@ jobs:
     - name: "Activate Namespace"
       uses: okteto/namespace@latest
       with:
-        name: ${{ secrets.OKTETO_NAMESPACE }}
+        namespace: ${{ secrets.OKTETO_NAMESPACE }}
     
     - name: "Trigger the Pipeline"
       uses: okteto/pipeline@latest
