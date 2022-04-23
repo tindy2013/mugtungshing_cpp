@@ -191,7 +191,7 @@ std::string getUserMention(User::Ptr user, bool markdown = true)
     if(markdown)
         return "[" + getUserFullName(user) + "](tg://user?id=" + std::to_string(user->id) + ")";
     else
-        return "<a href=\"tg://user?id=" + std::to_string(user->id) + "\">" + escapeHTMLCharacters(getUserFullName(user)) + "</a>";
+        return "<a href=\\\"tg://user?id=" + std::to_string(user->id) + "\\\">" + escapeHTMLCharacters(getUserFullName(user)) + "</a>";
 }
 
 std::string getEnv(const std::string &name)
