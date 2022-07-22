@@ -22,5 +22,4 @@ jobs:
         usedocker: true
       env:
         HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
-        HD_PORT: ${{secrets.PORT}}
         HD_URL_BASE: ${{secrets.URL_BASE}}
