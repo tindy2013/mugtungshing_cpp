@@ -1,4 +1,6 @@
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 name: Update Okteto Container
 
@@ -8,16 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - uses: okteto/context@latest
-      with:
-        token: ${{ secrets.OKTETO_TOKEN }}
+    - uses: actions/checkout@v2
     
-    - name: "Activate Namespace"
-      uses: okteto/namespace@latest
+    - uses: akhileshns/heroku-deploy@v3.12.12
       with:
-        namespace: ${{ secrets.OKTETO_NAMESPACE }}
-    
-    - name: "Trigger the Pipeline"
-      uses: okteto/pipeline@latest
-      with:
-        name: ${{ secrets.OKTETO_APP_NAME }}
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_email: ${{secrets.HEROKU_EMAIL}}
+        usedocker: true
