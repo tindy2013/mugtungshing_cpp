@@ -2,7 +2,7 @@ on:
   push:
   workflow_dispatch:
 
-name: Update Okteto Container
+name: Update Heroku Container
 
 jobs:
 
@@ -11,10 +11,16 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
+      name: Checkout
     
     - uses: akhileshns/heroku-deploy@v3.12.12
+      name: Deploy to Heroku
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
         heroku_email: ${{secrets.HEROKU_EMAIL}}
         usedocker: true
+      env:
+        HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+        HD_PORT: ${{secrets.PORT}}
+        HD_URL_BASE: ${{secrets.URL_BASE}}
